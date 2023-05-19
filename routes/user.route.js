@@ -44,12 +44,12 @@ userRouter.post("/login", async (req, res) => {
             token: jwt.sign({ userID: user._id }, "masai"),
           });
         } else {
-          return res.status(400).send({ msg: "Incorrect password" });
+          return res.status(401).send({ msg: "Incorrect password" });
         }
       });
     } else {
       return res
-        .status(400)
+        .status(422)
         .send({ msg: "Invalid email, Please register first" });
     }
   } catch (err) {
